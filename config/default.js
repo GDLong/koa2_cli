@@ -6,7 +6,7 @@ const config = {
         host: 'localhost',   // 数据库地址
         user: 'root',    // 数据库用户
         password: '123123',   // 数据库密码
-        database: 'koatest'  // 选中数据库
+        database: 'blog'  // 选中数据库
     }
 }
 

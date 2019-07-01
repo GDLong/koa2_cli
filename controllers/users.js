@@ -1,33 +1,50 @@
-// const router = require('koa-router')()
+const {findUserData,findUserInfo} = require("../lib/mysql.js");
 
-// router.prefix('/users')
-
-// router.get('/', function (ctx, next) {
-//   ctx.body = 'this is a users response!'
-// })
-
-// router.get('/bar', function (ctx, next) {
-//   ctx.body = 'this is a users/bar response'
-// })
-
-// module.exports = router
-const fn_hello = async (ctx,next) =>{
-  var name = ctx.params.name;
-  ctx.response.body = `<h1>Hello,${name}!</h1>`;
+const fn_login = async (ctx, next) => {
+  const {name,password } = ctx.request.body;
+  await findUserData(name).then(res =>{
+    const {userName,userPassword} = res[0];
+    const data = {code:200}
+    if(name !== userName || password !== userPassword){
+      data.code = 100,
+      data.msg = "用户名或密码填写错误"
+    }else{
+      data.msg = "登录成功"
+    }
+    ctx.response.body = data;
+    return;
+  }).catch(error=>{
+    const data = {
+      code:100,
+      msg:"用户名错误！",
+      serverConsole:error.message
+    }
+    ctx.response.body = data;
+    return;
+  })
 };
-// router.post('/doAdd', upload.single('face'), async (ctx, next) => {
-//   ctx.body = {
-//       filename: ctx.req.file.filename,//返回文件名
-//       body:ctx.req.body
-//   }
-// });
-const fn_multer = async (ctx,next) =>{
-  ctx.body = {
-      filename: ctx.req.file.filename,//返回文件名
-      body:ctx.req.body
-  }
+
+const fn_userInfo = async (ctx,next )=>{
+  await findUserInfo().then(res => {
+    const data = {
+      code:200,
+      msg:"请求成功",
+      data:res[0]
+    }
+    ctx.body = data;
+    return;
+  }).catch(error=>{
+    const data = {
+      code:100,
+      msg:"用户名错误！",
+      serverConsole:error.message
+    }
+    ctx.body = data;
+    return;
+  })
 }
+
 module.exports = {
-  'GET /hello/:name':fn_hello,
-  'GET /multer':fn_multer
+  'POST /user/login':fn_login,
+  'POST /user/userInfo':fn_userInfo,
 }
