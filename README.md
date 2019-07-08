@@ -3,9 +3,14 @@
 ### 博客介绍
 * 前后端分离开发（Node服务端+后台管理系统+前端页面展现）
 * 博客页面基于 Ant Design Pro 详细参考 [Ant Design Pro](https://pro.ant.design/index-cn)
-* 博客地址---
-* 预览地址：
-![](https://user-gold-cdn.xitu.io/2019/7/8/16bcf64914a58a1c?w=286&h=68&f=png&s=4087) 
+* 前端地址：[https://github.com/GDLong/koa2_blog_web](https://github.com/GDLong/koa2_blog_web)
+* 后台地址：[https://github.com/GDLong/koa2_blog_server](https://github.com/GDLong/koa2_blog_server)
+* 账号：
+
+| 用户名 | 密码 |
+|------|------------|
+| admin  | 123123 |
+| xiaohuo  | 123123 | 
 
 ### 实现功能
 
