@@ -19,6 +19,7 @@ const fn_articleList = async (ctx, next) => {
     list,
     pagination: {total, pageSize, current:currentPage}
   }
+  
 };
 
 const fn_articleInsert = async (ctx,next)=>{
@@ -75,7 +76,7 @@ const fn_articleDelete = async (ctx,next)=>{
   })
 }
 
-/* 前端 */
+/* 前端 查询某篇文章*/
 const fn_queryArticle = async (ctx, next) => {
   let id = ctx.params.keys
   if(id && parseInt(id)){
